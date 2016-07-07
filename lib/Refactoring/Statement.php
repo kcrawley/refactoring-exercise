@@ -12,7 +12,7 @@ class Statement
     /** @var array $priceData */
     protected $priceData = [];
 
-    public function __construct(array $priceData, $mode = 0)
+    public function __construct(array $priceData)
     {
         if (empty($priceData)) {
             throw new \Exception(
@@ -25,14 +25,14 @@ class Statement
 
         $this->mustache     = new \Mustache_Engine(); // hard dependency here, don't see it changing
         $this->priceData    = $priceData;
-        $this->mode         = (int) $mode;
     }
 
     /**
      * @param array $data
+     * @param int $mode
      * @return string
      */
-    public function generate(array $data)
+    public function generate(array $data, $mode = self::STD_OUT)
     {
         $renderData = [
             'name'      => $data['name'],
@@ -68,12 +68,9 @@ class Statement
             }
         }
 
-        switch($this->mode) {
-            case self::STD_OUT:
-                return $this->mustache->render(
-                    file_get_contents('./templates/statement-std_out.mustache'),
-                    $renderData
-                );
+        switch($mode) {
+            case self::JSON:
+                return json_encode($renderData);
                 break;
             case self::HTML:
                 return $this->mustache->render(
@@ -81,9 +78,11 @@ class Statement
                     $renderData
                 );
                 break;
-            case self::JSON:
-                return json_encode($renderData);
-                break;
+            default:
+                return $this->mustache->render(
+                    file_get_contents('./templates/statement-std_out.mustache'),
+                    $renderData
+                );
         }
     }
 }

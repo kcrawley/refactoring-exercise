@@ -16,7 +16,8 @@ Mustache_Autoloader::register();
 # define variables
 $import     = new \Refactoring\Import();
 $priceData  = $import->parse();
-$statement  = new \Refactoring\Statement($priceData['priceCodes'], isset($argv[1]) ? $argv[1] : 0);
+$statement  = new \Refactoring\Statement($priceData['priceCodes']);
+$output     = isset($argv[1]) ? $argv[1] : 0;
 $customer   = new \Refactoring\Customer('Joe Schmoe');
 $rentals    = [
     'Back to the Future' => 4,
@@ -37,5 +38,17 @@ foreach($rentals as $movieName => $rentalDays) {
     );
 }
 
+
 # output statement
-echo $customer->statement($statement);
+switch ($output) {
+    case \Refactoring\Statement::STD_OUT:
+        echo $customer->statement($statement);
+        break;
+    case \Refactoring\Statement::HTML:
+        echo $customer->htmlStatement($statement);
+        break;
+    case \Refactoring\Statement::JSON:
+        echo $customer->jsonStatement($statement);
+        break;
+}
+

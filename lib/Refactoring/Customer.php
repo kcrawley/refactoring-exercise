@@ -46,6 +46,30 @@ class Customer
         return $statement->generate([
             'name'      => $this->name,
             'rentals'   => $this->rentals,
-        ]);
+        ], Statement::STD_OUT);
+    }
+
+    /**
+     * @param Statement $statement
+     * @return string
+     */
+    public function htmlStatement(Statement $statement)
+    {
+        return $statement->generate([
+            'name'      => $this->name,
+            'rentals'   => $this->rentals,
+        ], Statement::HTML);
+    }
+
+    /**
+     * @param Statement $statement
+     * @return string
+     */
+    public function jsonStatement(Statement $statement)
+    {
+        return $statement->generate([
+            'name'      => $this->name,
+            'rentals'   => $this->rentals,
+        ], Statement::JSON);
     }
 }
