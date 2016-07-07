@@ -55,7 +55,7 @@ class Statement
             }
 
             $renderData['movies'][] = [
-                'name'      => ($this->mode == self::STD_OUT)
+                'name'      => ($mode == self::STD_OUT)
                     ? str_pad($rental->movie()->name(), 30, ' ', STR_PAD_RIGHT)
                     : $rental->movie()->name(),
                 'subTotal'  => $thisAmount
