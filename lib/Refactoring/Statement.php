@@ -64,7 +64,7 @@ class Statement
             $renderData['points']++;
 
             if ($frequentRenter && $rental->daysRented() > $frequentRenter['minDays']) {
-                $renderData['points'] += $frequentRenter['minDays'];
+                $renderData['points'] += $frequentRenter['addPoints'];
             }
         }
 
