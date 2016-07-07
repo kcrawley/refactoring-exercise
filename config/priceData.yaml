@@ -1,0 +1,27 @@
+'movies':
+  'Back to the Future': ## SKUs would make more sense here
+    priceCode: 2 ## would rather use real names here, but Movie->priceCode expects INT
+  'Office Space':
+    priceCode: 0
+  'The Big Lebowski':
+    priceCode: 1
+'priceCodes':
+  2:
+    name: 'CHILDRENS' ## names are just decorative, no functionality at this point
+    baseAmount: 1.5
+    maxFreeDays: 3
+    costMultiplier: 1.5
+  1:
+    name: 'NEW_RELEASE'
+    baseAmount: 0
+    maxFreeDays: 0
+    costMultiplier: 3
+    frequentRenter:
+      minDays: 1
+      addPoints: 1
+  0:
+    name: 'REGULAR'
+    baseAmount: 2
+    maxFreeDays: 2
+    costMultiplier: 1.5
+

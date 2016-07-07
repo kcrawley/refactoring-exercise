@@ -1,0 +1,19 @@
+{
+  "name": "kcrawley/refactoring",
+  "description": "Refactoring-Exercise",
+  "authors": [
+    {
+      "name": "Kevin Crawley",
+      "email": "kcmastrpc@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Refactoring\\": "lib/Refactoring"
+    }
+  },
+  "require": {
+    "mustache/mustache": "2.10.0",
+    "symfony/yaml": "3.1.2"
+  }
+}
